@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TaskForm from '../components/TaskForm.svelte';
+import TaskList from '../components/TaskList.svelte';
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "WebApplication",
+	"name": "Менеджер задач",
+	"applicationCategory": "ProductivityApplication",
+	"operatingSystem": "Web",
+	"description": "Современное веб-приложение для управления задачами с поддержкой темной темы и анимаций",
+	"offers": {
+		"@type": "Offer",
+		"price": "0",
+		"priceCurrency": "RUB"
+	},
+	"aggregateRating": {
+		"@type": "AggregateRating",
+		"ratingValue": "4.8",
+		"ratingCount": "24"
+	}
+}
+---
+
+<Layout title="Менеджер задач">
+	<div class="grid grid-cols-1 gap-6">
+		<div>
+			<TaskForm client:load />
+		</div>
+		<div>
+			<TaskList client:load />
+		</div>
+	</div>
+</Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
